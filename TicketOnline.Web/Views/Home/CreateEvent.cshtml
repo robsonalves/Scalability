@@ -1,0 +1,55 @@
+﻿@model TicketOnline.Models.Event
+
+@{
+    ViewBag.Title = "New Event";
+}
+
+@using (Html.BeginForm("CreateEventConfirmed", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>New Event</legend>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name, new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                @Html.EditorFor(m => m.Name, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Description, new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = "3" })
+                <span class="help-block">Describe what your event is about? Be creative!</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">How many seats?</label>
+            <div class="col-lg-10">
+                @Html.EditorFor(m => m.TotalSeats, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Event date</label>
+            <div class="col-lg-10">
+                @Html.EditorFor(m => m.EventDate, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Ticket price</label>
+            <div class="col-lg-10">
+                @Html.EditorFor(m => m.TicketPrice, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+        </div>
+    </fieldset>
+}
+
+
+
+
+

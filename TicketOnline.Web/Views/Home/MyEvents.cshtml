@@ -1,0 +1,39 @@
+﻿@model System.Collections.Generic.List<TicketOnline.Models.Event>
+
+@{
+    ViewBag.Title = "My Events";
+}
+
+<h2>My Events</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var ev in Model)
+    {
+        <tr>
+            <td>@ev.Name</td>
+            <td>@ev.Description</td>
+            <td>@ev.Status</td>
+            @if (ev.Status == TicketOnline.Models.Enum.EventStatus.Draft)
+            {
+                <td>@Html.ActionLink("Make event live", "MakeEventLive", new { eventId = @ev.Id }, new { @class = "btn btn-success btn-sm" })</td>
+                <td>@Html.ActionLink("Delete", "DeleteEvent", new { eventId = @ev.Id }, new { @class = "btn btn-danger btn-sm" })</td>
+            }
+            else
+            {
+                <td></td>
+                <td></td>
+            }
+        </tr>
+    }
+</table>
+
+@Html.ActionLink("Create new event", "CreateEvent", null, new { @class = "btn btn-primary" })
