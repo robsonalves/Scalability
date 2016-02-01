@@ -1,0 +1,38 @@
+﻿@model System.Collections.Generic.List<TicketOnline.Models.Event>
+
+
+@{
+    ViewBag.Title = "All Events";
+}
+
+<h2>All Available Events</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Available Seats</th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var ev in Model)
+    {
+        <tr>
+            <td>@ev.Name</td>
+            <td>@ev.Description</td>
+            @if (ev.AvailableSeats > 0)
+            {
+                <td>@ev.AvailableSeats</td>
+                <td>@Html.ActionLink("Order", "OrderTicket", new { eventId = ev.Id }, new { @class = "btn btn-primary btn-sm" })</td>
+            }
+            else
+            {
+                <td><span class="label label-danger">Sold Out</span></td>
+                <td></td>
+            }
+        </tr>
+    }
+</table>
+
+@Html.ActionLink("Create your own event", "CreateEvent", null, new { @class = "btn btn-primary" })
